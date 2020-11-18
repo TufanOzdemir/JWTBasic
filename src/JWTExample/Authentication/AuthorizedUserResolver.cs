@@ -15,6 +15,7 @@ namespace JWTExample.Authentication
 
         public string GetUserName => _principal.Name;
 
-        public int GetBranchId => _principal.BranchId;
+        public string GetMail => _principal.Email;
+        public string GetFullname => string.Concat(_principal.Name, " ", _principal.Surname);
     }
 }

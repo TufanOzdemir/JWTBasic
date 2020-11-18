@@ -4,6 +4,7 @@
     {
         int GetUserId { get; }
         string GetUserName { get; }
-        int GetBranchId { get; }
+        string GetMail { get; }
+        string GetFullname { get; }
     }
 }

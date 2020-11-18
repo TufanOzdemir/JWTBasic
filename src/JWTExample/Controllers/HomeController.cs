@@ -1,4 +1,5 @@
-﻿using JWTExample.Service;
+﻿using JWTExample.Interfaces;
+using JWTExample.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace JWTExample.Controllers
     public class HomeController : ControllerBase
     {
         private readonly TokenGenerator _tokenGenerator;
+        private readonly IAuthorizedUserResolver _authorizedUserResolver;
 
-        public HomeController(TokenGenerator tokenGenerator)
+        public HomeController(TokenGenerator tokenGenerator, IAuthorizedUserResolver authorizedUserResolver)
         {
             _tokenGenerator = tokenGenerator;
+            _authorizedUserResolver = authorizedUserResolver;
         }
 
         [HttpGet]
@@ -23,19 +26,19 @@ namespace JWTExample.Controllers
         }
 
         [HttpGet]
-        [Route("GetA")]
+        [Route("GetMail")]
         [Authorize(Roles = "A")]
-        public IActionResult GetA()
+        public IActionResult GetMail()
         {
-            return Ok();
+            return Ok(_authorizedUserResolver.GetMail);
         }
 
         [HttpGet]
-        [Route("GetB")]
+        [Route("GetFullname")]
         [Authorize(Roles = "B")]
-        public IActionResult GetB()
+        public IActionResult GetFullname()
         {
-            return Ok();
+            return Ok(_authorizedUserResolver.GetFullname);
         }
 
         [HttpGet]

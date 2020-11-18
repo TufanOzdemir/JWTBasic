@@ -10,6 +10,7 @@ namespace JWTExample.Interfaces
     {
         int Id { get; }
         string Name { get; }
+        string Surname { get; }
         string FirstName { get; }
         int BranchId { get; }
         string Email { get; }

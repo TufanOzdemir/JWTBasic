@@ -44,6 +44,14 @@ namespace JWTExample.Authentication
             }
         }
 
+        public virtual string Surname
+        {
+            get
+            {
+                return GetClaim<string>(ClaimTypes.Surname);
+            }
+        }
+
         public virtual int BranchId
         {
             get
